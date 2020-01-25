@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class Record(models.Model):
+	charity = models.CharField('Event Name', max_length=120)
+	item = models.CharField(max_length=120)
+	time = models.CharField(max_length=120)
+	location = models.CharField(max_length = 60)
