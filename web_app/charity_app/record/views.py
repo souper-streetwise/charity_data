@@ -17,4 +17,18 @@ def record_create(request):
 		form.save()
 
 
-	return render(request,"record/add_item.html",{'title':"Create Record","form": form})
+	return render(request,"record/add_item.html",{'title':"Record Item","form": form})
+
+# @login_required
+# def record_create(request):
+# 	submitted = False
+# 	if request.method == 'POST':
+# 		form = RecordForm(request.POST)
+# 		if form.is_valid():
+# 			form.save()
+# 			return HttpResponseRedirect('/add_item/?submitted=True')
+# 		else:
+# 			form = VenueForm()
+# 			if 'submitted' in request.GET:
+# 				submitted = True
+# 	return render(request, 'record/add_item.html', {'form': form, 'submitted': submitted})
