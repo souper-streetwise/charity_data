@@ -4,7 +4,7 @@ class Item(models.Model):
 	item = models.CharField(max_length=120)
 
 	def __str__(self):
-		return self.name
+		return self.item
 
 class Record(models.Model):
 	charity = models.CharField('Charity', max_length=120)
