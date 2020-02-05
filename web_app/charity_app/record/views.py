@@ -2,6 +2,7 @@ from django.shortcuts import render
 #from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import RecordForm
+from django.contrib import messages
 
 @login_required
 def homepage(request):
@@ -13,8 +14,11 @@ def record_create(request):
 	form = RecordForm(request.POST or None)
 
 	if request.POST:
-		print("You create instance")
+		print("Item submitted")
 		form.save()
+
+	if form.is_valid():
+		messages.success(request, 'Form submission successful')
 
 
 	return render(request,"record/add_item.html",{'title':"Record Item","form": form})
