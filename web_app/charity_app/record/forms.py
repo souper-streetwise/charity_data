@@ -6,5 +6,5 @@ from .models import Record
 class RecordForm(ModelForm):
 	class Meta:
 		model = Record
-		fields = '__all__'
-#		fields = ['charity', 'time', 'location']
+#		fields = '__all__'
+		fields = ['charity', 'item', 'location']
