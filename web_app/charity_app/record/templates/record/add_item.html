@@ -1,25 +1,56 @@
 {% extends "base.html" %}
 
-{% block title %}Record Item{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<h1>Add your item to our database</h1>
+    <div class="row">
+        <h3 class="col s12 center-align">Add your item to our database</h3>
+    </div>
 
-{% if submitted %}
-    <p class="success">
-        Your item was submitted successfully. Thank you.
-    </p>
+    {% if submitted %}
+        <div class="row">
+            <p class="success col s12">
+                Your item was submitted successfully. Thank you.
+            </p>
+        </div>
 
-{% else %}
-    <form action="" method="post" novalidate>
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td>&nbsp;</td>
-            <td><input type="submit" value="Submit"></td>
-        </tr>
-    </table>
-    {% csrf_token %}
-    </form>
-{% endif %}
+    {% else %}
+        <div class="row">
+            <form action="" method="post" class="col s12 m10 offset-m1 l6 offset-l3" novalidate>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.charity }}
+                        <label for={{ form.charity.id_for_label }}>Charity</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.time }}
+                        <label for={{ form.time.id_for_label }}>Time</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.item }}
+                        <label for={{ form.time.id_for_label }}>Item</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form.location }}
+                        <label for={{ form.location.id_for_label }}>Location</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button class="col s12 btn">Submit</button>
+                </div>
+
+                {#                    <td><input type="submit" value="Submit"></td>#}
+                {#                </tr>#}
+                {#            </table>#}
+                {% csrf_token %}
+            </form>
+        </div>
+    {% endif %}
 {% endblock content %}
