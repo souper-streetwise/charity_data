@@ -6524,3 +6524,19 @@ input[type=range]::-ms-thumb {
     bottom: auto;
     text-align: center;
     margin-top: 1.2rem; } }
+
+#subnav {
+  background-color: #3f51b5; }
+
+#subnav .brand-logo {
+  font-size: 1.9rem; }
+
+.success {
+  color: #2E7D32;
+  background-color: #C8E6C9;
+  border-color: #81C784; }
+
+.error {
+  color: #C62828;
+  background-color: #FFCDD2;
+  border-color: #E57373; }

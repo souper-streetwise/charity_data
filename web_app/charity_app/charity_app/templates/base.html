@@ -19,6 +19,7 @@
         <script>
             $(document).ready(function () {
                 $('select').formSelect();
+                $('.tabs').tabs();
             });
         </script>
 
@@ -31,14 +32,23 @@
     </head>
 
     <body>
-    <nav class="nav-extended">
+    <nav>
         <div class="nav-wrapper">
             <span class="brand-logo center">{{ appName }}</span>
             <ul class="right hide-on-small-and-down">
-                <li><a>{% block title %}{% endblock %}</a></li>
+                <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'admin:logout' %}">Logout</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
+    <nav>
+        <div id="subnav" class="nav-wrapper">
+            <span class="brand-logo center">{% block title %}{% endblock title %}</span>
+        </div>
+    </nav>
+
     <div class="container">
         {#        <div class="row">#}
         {#            <h2 class="col s12 center-align">{% block title %}{% endblock %}</h2>#}
@@ -48,7 +58,10 @@
 
     {% if messages %}
         {% for message in messages %}
-            <script>M.toast({html: "{{ message }}"})</script>
+            <script>M.toast({
+                html: "{{ message }}",
+                classes: "success"
+            })</script>
         {% endfor %}
     {% endif %}
     </body>

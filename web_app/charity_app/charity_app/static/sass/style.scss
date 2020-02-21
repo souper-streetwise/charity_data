@@ -4,3 +4,23 @@ $primary-color: color("indigo", "darken-4");
 $secondary-color: color("indigo", "base");
 
 @import "materialize";
+
+#subnav {
+  background-color: $secondary-color;
+}
+
+#subnav .brand-logo {
+  font-size: 1.9rem;
+}
+
+.success {
+  color: color("green", "darken-3");
+  background-color: color("green", "lighten-4");
+  border-color: color("green", "lighten-2");
+}
+
+.error {
+  color: color("red", "darken-3");
+  background-color: color("red", "lighten-4");
+  border-color: color("red", "lighten-2");
+}
