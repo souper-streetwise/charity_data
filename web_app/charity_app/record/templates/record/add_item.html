@@ -3,10 +3,6 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-    <div class="row">
-        <h3 class="col s12 center-align">Add your item to our database</h3>
-    </div>
-
     {% if submitted %}
         <div class="row">
             <p class="success col s12">
@@ -16,41 +12,41 @@
 
     {% else %}
         <div class="row">
-            <form action="" method="post" class="col s12 m10 offset-m1 l6 offset-l3" novalidate>
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ form.charity }}
-                        <label for={{ form.charity.id_for_label }}>Charity</label>
+            <div class="card col s12 m10 offset-m1 l6 offset-l3">
+                <form action="" method="post" class="card-content" novalidate>
+                    <span class="card-title">Add your item to our database</span>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.charity }}
+                            <label for={{ form.charity.id_for_label }}>Charity</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ form.time }}
-                        <label for={{ form.time.id_for_label }}>Time</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.time }}
+                            <label for={{ form.time.id_for_label }}>Time</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ form.item }}
-                        <label for={{ form.time.id_for_label }}>Item</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.item }}
+                            <label for={{ form.time.id_for_label }}>Item</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ form.location }}
-                        <label for={{ form.location.id_for_label }}>Location</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.location }}
+                            <label for={{ form.location.id_for_label }}>Location</label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <button class="col s12 btn">Submit</button>
-                </div>
+                    <div class="row">
+                        <button class="col s12 btn waves-effect">Submit</button>
+                    </div>
 
-                {#                    <td><input type="submit" value="Submit"></td>#}
-                {#                </tr>#}
-                {#            </table>#}
-                {% csrf_token %}
-            </form>
+                    {% csrf_token %}
+                </form>
+            </div>
         </div>
     {% endif %}
 {% endblock content %}

@@ -1,0 +1,6 @@
+@import "components/color-variables";
+
+$primary-color: color("indigo", "darken-4");
+$secondary-color: color("indigo", "base");
+
+@import "materialize";
