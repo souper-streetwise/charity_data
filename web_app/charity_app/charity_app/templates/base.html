@@ -16,12 +16,7 @@
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-        <script>
-            $(document).ready(function () {
-                $('select').formSelect();
-                $('.tabs').tabs();
-            });
-        </script>
+        <script src="/static/js/init.js"></script>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -35,10 +30,15 @@
     <nav>
         <div class="nav-wrapper">
             <span class="brand-logo center">{{ appName }}</span>
-            <ul class="right hide-on-small-and-down">
-                <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{% url 'admin:index' %}">
+                    <i class="material-icons tooltipped" data-tooltip="Admin">settings</i>
+                </a></li>
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'admin:logout' %}">Logout</a></li>
+                    <li><a href="{% url 'admin:logout' %}">
+                        <i class="material-icons tooltipped" data-tooltip="Logout">power_settings_new</i>
+                    </a></li>
                 {% endif %}
             </ul>
         </div>
@@ -48,6 +48,13 @@
             <span class="brand-logo center">{% block title %}{% endblock title %}</span>
         </div>
     </nav>
+
+    <ul class="sidenav" id="mobile-menu">
+        <li><a href="{% url 'admin:index' %}"><i class="material-icons">settings</i>Admin</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'admin:logout' %}"><i class="material-icons">power_settings_new</i>Logout</a></li>
+        {% endif %}
+    </ul>
 
     <div class="container">
         {#        <div class="row">#}
