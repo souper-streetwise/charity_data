@@ -1,36 +1,106 @@
 {% extends "base.html" %}
 
-{% block title %}Record Item{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<h1>Add your item to our database</h1>
 
-{% if submitted %}
-    <p class="success">
-        Your item was submitted successfully. Thank you.
-    </p>
+    {% if submitted %}
+        <div class="row">
+            <p class="success col s12">
+                Your item was submitted successfully. Thank you.
+            </p>
+        </div>
 
-{% else %}
-    <form action="" method="post" novalidate>
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td>&nbsp;</td>
-            <td><input type="submit" value="Submit"></td>
-        </tr>
-    </table>
-    {% csrf_token %}
-    </form>
-{% endif %}
+    {% else %}
+        <div class="row">
+            <div class="card col s12 m10 offset-m1 l6 offset-l3">
+                <form action="" method="post" class="card-content" novalidate>
+                    <span class="card-title">Add your item to our database</span>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.charity }}
+                            {{ form.charity.label_tag }}
+                            {% if form.charity.errors %}
+                                <div class="error-box card">
+                                    <div class="card-content">
+                                        <ul>
+                                            {% for error in form.charity.errors %}
+                                                <li><span>{{ error|escape }}</span></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.time }}
+                            {{ form.time.label_tag }}
+                            {% if form.time.errors %}
+                                <div class="error-box card">
+                                    <div class="card-content">
+                                        <ul>
+                                            {% for error in form.time.errors %}
+                                                <li><span>{{ error|escape }}</span></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.item }}
+                            {{ form.item.label_tag }}
+                            {% if form.item.errors %}
+                                <div class="error-box card">
+                                    <div class="card-content">
+                                        <ul>
+                                            {% for error in form.item.errors %}
+                                                <li><span>{{ error|escape }}</span></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-    {% endfor %}
-</ul>
-{% endif %}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.location }}
+                            {{ form.location.label_tag }}
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <button class="col s12 btn waves-effect">Submit</button>
+                    </div>
+
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    {% endif %}
 {% endblock content %}
+
+{% block js %}
+    <script>
+        var locationField = document.getElementById("{{ form.location.id_for_label }}");
+        navigator.geolocation.getCurrentPosition(function (location) {
+                locationField.value =
+                    location.coords.longitude.toPrecision(2).toString() +
+                    ", " +
+                    location.coords.latitude.toPrecision(2).toString();
+            },
+            function (error) {
+                locationField.value = "";
+                locationField.placeholder = "Unable to retrieve your position...";
+            });
+    </script>
+{% endblock %}
+

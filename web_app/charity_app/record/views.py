@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 #from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import RecordForm
@@ -15,8 +17,16 @@ def record_create(request):
 	form = RecordForm(request.POST or None)
 
 	if request.POST:
-		print("Item submitted")
-		form.save()
+
+		try:
+			form.save()
+		except ValueError as err:
+			messages.error(request, err)
+			return render(request, "record/add_item.html", {'title': "Record Item", "form": form})
+
+		messages.success(request,"Record saved successfully")
+		return redirect("/")
+
 
 	if form.is_valid():
 		messages.success(request, 'Form submission successful')
