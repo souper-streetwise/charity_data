@@ -65,10 +65,17 @@
 
     {% if messages %}
         {% for message in messages %}
-            <script>M.toast({
-                html: "{{ message }}",
-                classes: "success"
-            })</script>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <script>M.toast({
+                    html: "{{ message }}",
+                    classes: "success"
+                })</script>
+            {% else %}
+                <script>M.toast({
+                    html: "{{ message }}",
+                    classes: "error"
+                })</script>
+            {% endif %}
         {% endfor %}
     {% endif %}
     </body>

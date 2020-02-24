@@ -15,7 +15,12 @@ def record_create(request):
 	form = RecordForm(request.POST or None)
 
 	if request.POST:
-		form.save()
+		try:
+			form.save()
+		except ValueError as err:
+			messages.error(request, err)
+			return render(request, "record/add_item.html", {'title': "Record Item", "form": form})
+
 		messages.success(request,"Record saved successfully")
 		return redirect("/")
 
