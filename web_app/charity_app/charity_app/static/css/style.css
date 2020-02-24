@@ -6536,7 +6536,14 @@ input[type=range]::-ms-thumb {
   background-color: #C8E6C9;
   border-color: #81C784; }
 
-.error {
+.error, .error-box {
   color: #C62828;
   background-color: #FFCDD2;
   border-color: #E57373; }
+
+.error-box {
+  padding: 0px;
+  margin: 0px; }
+
+.error-box > .card-content {
+  padding: 5px 15px 5px 15px; }

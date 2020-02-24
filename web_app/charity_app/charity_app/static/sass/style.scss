@@ -24,3 +24,13 @@ $secondary-color: color("indigo", "base");
   background-color: color("red", "lighten-4");
   border-color: color("red", "lighten-2");
 }
+
+.error-box {
+  @extend .error;
+  padding: 0px;
+  margin: 0px;
+}
+
+.error-box > .card-content {
+  padding: 5px 15px 5px 15px;
+}
