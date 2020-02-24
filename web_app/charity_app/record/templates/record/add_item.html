@@ -93,9 +93,9 @@
         var locationField = document.getElementById("{{ form.location.id_for_label }}");
         navigator.geolocation.getCurrentPosition(function (location) {
                 locationField.value =
-                    location.coords.longitude.toPrecision(2).toString() +
+                    location.coords.longitude.toPrecision(4).toString() +
                     ", " +
-                    location.coords.latitude.toPrecision(2).toString();
+                    location.coords.latitude.toPrecision(4).toString();
             },
             function (error) {
                 locationField.value = "";
