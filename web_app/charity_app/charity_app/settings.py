@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Custom Modules
     'record',
-    'charity_app'
+    'charity_app',
+    'login',
+    'charts'
 ]
 
 MIDDLEWARE = [
