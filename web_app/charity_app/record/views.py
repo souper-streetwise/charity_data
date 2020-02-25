@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import RecordForm
-from django.contrib import messages
+from django.contrib import messages, auth
+
 
 # @login_required
 # def homepage(request):
@@ -9,28 +10,30 @@ from django.contrib import messages
 # 	return render(request, 'homepage.html', {'title': title})
 
 @login_required
-def record_create(request):
-	form = RecordForm(request.POST or None)
+def record_create(request, entry_method="bulk"):
+    form = RecordForm(
+        request.POST or None,
+        initial={
+            "charity": auth.get_user(request).get_username(),
+            "item": "2",
+        })
 
-	if request.POST:
+    if request.POST:
 
-		try:
-			form.save()
-		except ValueError as err:
-			messages.error(request, err)
-			return render(request, "record/add_item.html", {'title': "Record Item", "form": form})
+        try:
+            form.save()
+        except ValueError as err:
+            messages.error(request, err)
+            return render(request, "record/add_item.html",
+                          {'title': "Record Item", "form": form, "entry_method": entry_method})
 
-		messages.success(request,"Record saved successfully")
-		return redirect("/")
+        messages.success(request, "Record saved successfully")
+        return redirect(request.get_full_path())
 
+    if form.is_valid():
+        messages.success(request, 'Form submission successful')
 
-	if form.is_valid():
-		messages.success(request, 'Form submission successful')
-
-
-	return render(request,"record/add_item.html",{'title':"Record Item","form": form})
-
-
+    return render(request, "record/add_item.html", {'title': "Record Item", "form": form, "entry_method": entry_method})
 
 # def redirect_view(request):
 #     response = redirect('/redirect-success/')

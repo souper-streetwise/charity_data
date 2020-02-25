@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load record_extras %}
+
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
@@ -13,60 +15,33 @@
 
     {% else %}
         <div class="row">
-            <div class="card col s12 m10 offset-m1 l6 offset-l3">
-                <form action="" method="post" class="card-content" novalidate>
-                    <span class="card-title">Add your item to our database</span>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            {{ form.charity }}
-                            {{ form.charity.label_tag }}
-                            {% if form.charity.errors %}
-                                <div class="error-box card">
-                                    <div class="card-content">
-                                        <ul>
-                                            {% for error in form.charity.errors %}
-                                                <li><span>{{ error|escape }}</span></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            {{ form.item }}
-                            {{ form.item.label_tag }}
-                            {% if form.item.errors %}
-                                <div class="error-box card">
-                                    <div class="card-content">
-                                        <ul>
-                                            {% for error in form.item.errors %}
-                                                <li><span>{{ error|escape }}</span></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            {{ form.location }}
-                            {{ form.location.label_tag }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <button class="col s12 btn waves-effect">Submit</button>
-                    </div>
-
-                    {% csrf_token %}
-                </form>
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s12 m4 offset-m2 ">
+                        <a
+                                href="{% url "record_create" "bulk" %}"
+                                class="{% if entry_method == "bulk" %}active{% endif %}"
+                        >
+                            Bulk entry
+                        </a>
+                    </li>
+                    <li class="tab col s12 m4">
+                        <a
+                                href="{% url "record_create" "clicker" %}"
+                                class="{% if entry_method == "clicker" %}active{% endif %}"
+                        >
+                            Clicker
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
+
+        {% if entry_method == "bulk" %}
+            {% bulk_entry %}
+        {% elif entry_method == "clicker" %}
+            {% clicker_entry %}
+        {% endif %}
     {% endif %}
 {% endblock content %}
 

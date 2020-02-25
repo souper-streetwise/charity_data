@@ -37,7 +37,7 @@
             <a class="brand-logo center" href="/">{{ appName }}</a>
             <a href="#" data-target="mobile-menu" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="{% url "record_create" %}">
+                <li><a href="{% url "record_create" entry_method=request.path_info %}">
                     <i class="material-icons tooltipped" data-tooltip="Create record">add</i></a>
                 </li>
                 <li><a href="{% url "show_charts" %}">
@@ -61,7 +61,7 @@
     </nav>
 
     <ul class="sidenav" id="mobile-menu">
-        <li><a href="{% url "record_create" %}"><i class="material-icons">add</i>Create record</a></li>
+        <li><a href="{% url "record_create" entry_method=request.path_info %}"><i class="material-icons">add</i>Create record</a></li>
         <li><a href="{% url "show_charts" %}">
             <i class="material-icons">show_chart</i>Show charts</a></li>
         <li class="divider"></li>

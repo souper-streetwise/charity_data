@@ -5,11 +5,10 @@ from .models import Record, Item
 
 # create the form class for the Record model
 class RecordForm(ModelForm):
-
-    item = forms.ModelChoiceField(
-        queryset=Item.objects.all(),
-        empty_label="Please select an item..."
-    )
+    # item = forms.ModelChoiceField(
+    #     queryset=Item.objects.all(),
+    #     empty_label="Please select an item..."
+    # )
 
     class Meta:
         model = Record
@@ -20,7 +19,8 @@ class RecordForm(ModelForm):
                 attrs={
                     'readonly': 'true',
                     'placeholder': 'Retrieving...'
-                }
-            )
+                },
+            ),
+            'charity': forms.HiddenInput(),
+            'item': forms.HiddenInput()
         }
-
