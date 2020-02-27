@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Record, Item
+from .models import Record
 
 
 # create the form class for the Record model
@@ -21,6 +21,5 @@ class RecordForm(ModelForm):
                     'placeholder': 'Retrieving...'
                 },
             ),
-            'charity': forms.HiddenInput(),
-            'item': forms.HiddenInput()
+            'charity': forms.HiddenInput()
         }

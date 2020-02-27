@@ -18,10 +18,8 @@
 
         <script src="/static/js/init.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"
-                integrity="sha256-eVNjHw5UeU0jUqPPpZHAkU1z4U+QFBBY488WvueTm88=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.6.6/chartjs-plugin-zoom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly.min.js"
+                integrity="sha256-qe/oN+ddr+wOzXyDWGSx8glJYbdQk2FwExwyQgNMsdQ=" crossorigin="anonymous"></script>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -37,7 +35,7 @@
             <a class="brand-logo center" href="/">{{ appName }}</a>
             <a href="#" data-target="mobile-menu" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="{% url "record_create" entry_method=request.path_info %}">
+                <li><a href="{% url "record_create" %}">
                     <i class="material-icons tooltipped" data-tooltip="Create record">add</i></a>
                 </li>
                 <li><a href="{% url "show_charts" %}">
@@ -61,9 +59,12 @@
     </nav>
 
     <ul class="sidenav" id="mobile-menu">
-        <li><a href="{% url "record_create" entry_method=request.path_info %}"><i class="material-icons">add</i>Create record</a></li>
+        <li><a href="{% url "record_create" %}">
+            <i class="material-icons">add</i>Create record
+        </a></li>
         <li><a href="{% url "show_charts" %}">
-            <i class="material-icons">show_chart</i>Show charts</a></li>
+            <i class="material-icons">show_chart</i>Show charts
+        </a></li>
         <li class="divider"></li>
         <li><a href="{% url 'admin:index' %}"><i class="material-icons">settings</i>Admin site</a></li>
         {% if request.user.is_authenticated %}

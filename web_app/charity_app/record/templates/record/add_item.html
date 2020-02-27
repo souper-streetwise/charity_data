@@ -14,34 +14,37 @@
         </div>
 
     {% else %}
+
         <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s12 m4 offset-m2 ">
-                        <a
-                                href="{% url "record_create" "bulk" %}"
-                                class="{% if entry_method == "bulk" %}active{% endif %}"
-                        >
-                            Bulk entry
-                        </a>
-                    </li>
-                    <li class="tab col s12 m4">
-                        <a
-                                href="{% url "record_create" "clicker" %}"
-                                class="{% if entry_method == "clicker" %}active{% endif %}"
-                        >
-                            Clicker
-                        </a>
-                    </li>
-                </ul>
+            <div class="card col s12 m10 offset-m1 l6 offset-l3">
+                <form action="" method="post" class="card-content" novalidate>
+                    {{ form.charity }}
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.quantity }}
+                            {{ form.quantity.label_tag }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ form.location }}
+                            {{ form.location.label_tag }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 center">
+                            <button class="btn-floating btn-large pulse"><i class="material-icons">add</i></button>
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                </form>
             </div>
         </div>
 
-        {% if entry_method == "bulk" %}
-            {% bulk_entry %}
-        {% elif entry_method == "clicker" %}
-            {% clicker_entry %}
-        {% endif %}
+
     {% endif %}
 {% endblock content %}
 

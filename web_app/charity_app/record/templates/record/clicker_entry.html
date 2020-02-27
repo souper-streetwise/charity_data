@@ -4,7 +4,13 @@
             <span class="card-title center">Record an entry</span>
 
             {{ form.charity }}
-            {{ form.item }}
+
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.quantity }}
+                    {{ form.quantity.label_tag }}
+                </div>
+            </div>
 
             <div class="row">
                 <div class="input-field col s12">
