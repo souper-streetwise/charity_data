@@ -20,10 +20,11 @@ query = '''SELECT Charity, COUNT(1) AS Interactions
 # for that charity
 df = pd.read_sql_query(query, conn)
 df.set_index('charity', inplace=True)
+all_charities = df.index
 
 # create a dictionary for the dropdown containing all the charity names
 charity_options = []
-for i in df.index:
+for i in all_charities:
     charity_options.append({'label':i,'value':i})
 
 # Launch the application:
@@ -32,9 +33,11 @@ app = dash.Dash()
 
 # Create a Dash layout that contains a dropdown with multiple items and a Graph component:
 app.layout = html.Div([
-    dcc.Dropdown(id='charity-input',options=charity_options,value=['Soup Run Trust'], multi = True),
+    html.H1('Charity Data Dashboard', style = {'text-align': 'center', 'font-size':'50px', 'font-weight': 'lighter'}),
+    html.Div('Select charities:', style = {'font-size':'20px'}),    
+    dcc.Dropdown(id='charity-input',options=charity_options,value=all_charities, multi = True),
     dcc.Graph(id='graph')
-])
+], style = {'font-family': 'Gill Sans'})
 
 
 # Call back to take in the values from the dropdown and use to update the graph
