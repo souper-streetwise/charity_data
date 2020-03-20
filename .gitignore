@@ -5,3 +5,5 @@ notebooks/.ipynb_checkpoints/
 web_app/charity_app/charity_app/static/sass/materialize.scss
 web_app/charity_app/charity_app/static/sass/components
 .idea
+**/.env/*
+**.swp
