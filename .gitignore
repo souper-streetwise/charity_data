@@ -1,7 +1,6 @@
 .DS_Store
 notebooks/.ipynb_checkpoints/
 *pyc
-*.sqliie3
 web_app/charity_app/charity_app/static/sass/materialize.scss
 web_app/charity_app/charity_app/static/sass/components
 .idea
