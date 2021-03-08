@@ -9,14 +9,13 @@ from django.contrib import messages, auth
 # 	title = "This my Records Page"
 # 	return render(request, 'homepage.html', {'title': title})
 
+
 @login_required
 def record_create(request, entry_method="bulk"):
     form = RecordForm(
         request.POST or None,
-        initial={
-            "charity": auth.get_user(request).get_username(),
-            "item": "2",
-        })
+        initial={"charity": auth.get_user(request).get_username(), "item": "2",},
+    )
 
     if request.POST:
 
@@ -24,16 +23,29 @@ def record_create(request, entry_method="bulk"):
             form.save()
         except ValueError as err:
             messages.error(request, err)
-            return render(request, "record/add_item.html",
-                          {'title': "Record Item", "form": form, "entry_method": entry_method})
+            return render(
+                request,
+                "record/add_item.html",
+                {"title": "Record Item", "form": form, "entry_method": entry_method},
+            )
 
         messages.success(request, "Record saved successfully")
-        return redirect(request.get_full_path())
+        # return redirect(request.get_full_path())
+        return render(
+            request,
+            "record/add_item.html",
+            {"title": "Record Item", "form": form, "entry_method": entry_method},
+        )
 
     if form.is_valid():
-        messages.success(request, 'Form submission successful')
+        messages.success(request, "Form submission successful")
 
-    return render(request, "record/add_item.html", {'title': "Record Item", "form": form, "entry_method": entry_method})
+    return render(
+        request,
+        "record/add_item.html",
+        {"title": "Record Item", "form": form, "entry_method": entry_method},
+    )
+
 
 # def redirect_view(request):
 #     response = redirect('/redirect-success/')

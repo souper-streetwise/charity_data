@@ -21,5 +21,5 @@ class RecordForm(ModelForm):
                     'placeholder': 'Retrieving...'
                 },
             ),
-            'charity': forms.HiddenInput()
+            'charity': forms.HiddenInput(),
         }
