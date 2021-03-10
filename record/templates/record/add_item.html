@@ -6,24 +6,14 @@
 
 {% block content %}
 
-    {% if submitted %}
-        <div class="row">
-            <p class="success col s12">
-                Your item was submitted successfully. Thank you.
-            </p>
-        </div>
-
-    {% else %}
-
         <div class="row">
             <div class="card col s12 m10 offset-m1 l6 offset-l3">
                 <form action="" method="post" class="card-content" novalidate>
-                    {{ form.charity }}
-
                     <div class="row">
                         <div class="input-field col s12">
                             {{ form.quantity }}
                             {{ form.quantity.label_tag }}
+                            {{ form.quantity.errors }}
                         </div>
                     </div>
 
@@ -31,6 +21,7 @@
                         <div class="input-field col s12">
                             {{ form.location }}
                             {{ form.location.label_tag }}
+                            {{ form.location.errors }}
                         </div>
                     </div>
 
@@ -44,8 +35,6 @@
             </div>
         </div>
 
-
-    {% endif %}
 {% endblock content %}
 
 {% block js %}

@@ -12,8 +12,7 @@ class RecordForm(ModelForm):
 
     class Meta:
         model = Record
-        fields = '__all__'
-        # fields = ['charity', 'time', 'location']
+        fields = ['quantity', 'location']
         widgets = {
             'location': forms.TextInput(
                 attrs={
@@ -21,5 +20,4 @@ class RecordForm(ModelForm):
                     'placeholder': 'Retrieving...'
                 },
             ),
-            'charity': forms.HiddenInput(),
         }
