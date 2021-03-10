@@ -18,6 +18,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
+# A warning message for development
+print()
+print("*" * 70)
+print("WARNING:")
+print("This project is using a hard-coded secret key with debug mode enabled")
+print("in settings.py. You must only use these settings for local development")
+print("and not for production. Consult someone who knows what they are doing")
+print("before using this in anger.")
+print("*" * 70)
+print()
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'xv*8b1anvt&ipq9nl%$&58jwmjzlgl3a#263=u#407v60k+80-'
 
@@ -25,9 +36,7 @@ SECRET_KEY = 'xv*8b1anvt&ipq9nl%$&58jwmjzlgl3a#263=u#407v60k+80-'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "192.168.0.35",
-    "localhost",
-    "127.0.0.1"
+    "*",
 ]
 
 # Application definition

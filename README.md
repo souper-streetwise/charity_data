@@ -49,6 +49,13 @@ You can then run the Django development server using the manage.py script:
 
     $ python manage.py runserver
 
+## Security considerations
+
+This project is using a hard-coded secret key with debug mode enabled in
+`charity_app/settings.py`. You must only use these settings for local
+development and not for production. Consult someone who knows what they are
+doing before using this in anger.
+
 ## TODOs
 
 - [x] Added responsive menu
