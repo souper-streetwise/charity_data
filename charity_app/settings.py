@@ -50,8 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Custom Modules
     'record',
-    'charity_app',
-    'login',
     'charts'
 ]
 
@@ -134,3 +132,5 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
+
+LOGOUT_REDIRECT_URL = '/'
