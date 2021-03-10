@@ -1,9 +1,2 @@
-.DS_Store
-notebooks/.ipynb_checkpoints/
-*pyc
-web_app/charity_app/charity_app/static/sass/materialize.scss
-web_app/charity_app/charity_app/static/sass/components
-.idea
-**/.env/*
-**.swp
-**.sqlite3
+.ipynb_checkpoints
+*.pyc
