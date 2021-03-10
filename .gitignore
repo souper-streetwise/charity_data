@@ -1,5 +1,5 @@
 *.pyc
 *.sqlite3
 /env/
-/charity_app/static/sass/materialize.scss
-/charity_app/static/sass/components/
+/static/sass/materialize.scss
+/static/sass/components/
