@@ -1,5 +1,7 @@
 # Soup for Thought Clicker App
 
+![Clicker App screenshots](screenshots.jpg)
+
 A _clicker app_ to record the demand for the [Bristol Soup Run
 Trust](https://www.bristolsoupruntrust.org.uk/).
 
